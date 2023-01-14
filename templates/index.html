@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <title>Image search engine</title>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    /*background-color: var(--clr5);*/
+}
+
+:root {
+    --bg:#0e0321;
+    --clr1:orange;
+    --clr2:#ff5100;
+    --clr3:white;
+    --clr4:#ffbd42;
+    --clr5:#fff0d5;
+    --clr6:black;
+}
+
+header {
+    /*background-color: rgba(14, 3, 33, 0.6);*/
+    backdrop-filter: blur(8px);
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    /*text-align: center;
+    align-items: center;*/
+    justify-content: space-between;
+    /*margin: 0 auto;*/
+    padding: 1em 13em;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15) ;
+}
+.logo {
+    text-decoration: none;
+    color: orange;
+    text-transform: uppercase;
+    text-align: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.8em;
+    width: 200%;
+    margin: 0 auto;
+}
+.main {
+    position: relative;
+    padding: 9.5em 13.5em;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+       
+    
+}
+
+/*.main2 {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: url(images/background.png);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}*/
+
+.btn2 {
+    display: none;
+    color: var(--clr1);
+    background-color: transparent;
+    border: 2px solid var(--clr1);
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 600;
+    display: inline-block;
+    padding: 10px 20px;
+    letter-spacing: 1px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    transition: 0.7s ease;
+}
+.btn1 {
+    padding: 20px 00px;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    
+}
+::-webkit-file-upload-button {
+    display: none;
+    display: inline-block;
+    width: 100%;
+    padding: 120px 0 0 0;
+    height: 100px;
+    overflow: hidden;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: url('https://cdn1.iconfinder.com/data/icons/hawcons/32/698394-icon-130-cloud-upload-512.png') center center no-repeat #e4e4e4;
+    border-radius: 20px;
+    background-size: 60px 60px;
+  }
+  .container{
+      width: fit-content;
+      padding-left: 50px;
+      padding-right: 50px;
+      flex-wrap: wrap;
+      justify-content: center;
+      display: flex;
+  }
+  .fig{
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+
+  }
+
+
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <a href="#" class="logo">Image search engine</a>
+        </header>
+
+        <div class="container">
+            <div class="main">
+                <h1>Upload Image</h1>
+                <form method="POST" enctype="multipart/form-data">
+                    <input class="btn1" type="file" onchange="form.submit()" name="query_img"><br>
+                    <!--<input class="btn2" type="submit">-->
+                </form>
+            </div>
+            <div class="main2">
+            {% if query_path %}
+            <h2>Query:</h2>
+            <img src="{{ query_path }}" width="300px">
+            <h2>Results:</h2>
+            {% endif %}
+
+            {% for score in scores %}
+            <!-- <h2>Results:</h2> -->
+            <figure class="fig">
+                <img class="figimg" src="{{ score[1] }}" height="250px">
+            </figure>
+            {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>
+
+
